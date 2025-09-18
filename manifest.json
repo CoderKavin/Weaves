@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Weaves - AI Connection Finder",
+  "version": "1.0.0",
+  "description": "Turn your browser into a connection-finding machine using AI to spot relationships between your browsing content",
+  
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "scripting",
+    "background"
+  ],
+  
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Weaves - View Connections"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["weaves-overlay.html", "styles.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
